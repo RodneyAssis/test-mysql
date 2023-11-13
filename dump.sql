@@ -10,6 +10,8 @@
 # Generation Time: 2015-05-14 13:41:22 +0000
 # ************************************************************
 
+CREATE DATABASE test_sql;
+USE test_sql;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -136,3 +138,18 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+/*
+Objetivo:
+Fazer uma query que retorne o relatório abaixo:
+Todos os clientes, cor de suas casas, seus bairros,
+ seus carros
+Requisitos:
+Utilizar o dump desse projeto;
+*/
+
+SELECT cl.nome, cl.sobrenome, cs.cor, b.nome, c.modelo 
+FROM cliente cl 
+INNER JOIN casa cs ON cs.fk_cliente = cl.id_cliente
+INNER JOIN bairro b ON cs.fk_bairro = b.id_bairro
+LEFT JOIN carro c ON c.fk_cliente = cl.id_cliente;
